@@ -12,7 +12,7 @@ Runnable scenarios proving the feature end-to-end. Contracts: [skill-interface](
 ## Scenario 1 — Offline: workbook builder (no browser)
 
 ```bash
-uv run --with openpyxl scripts/build_workbook.py tests/fixtures/sample-project --out /tmp/sample.xlsx
+uv run --with openpyxl .claude/skills/linkedin-recruiter-export/scripts/build_workbook.py tests/fixtures/sample-project --out /tmp/sample.xlsx
 ```
 
 **Expected**: exit 0; prints output path + per-sheet row counts matching the fixture; opening the file shows 3 sheets per the workbook contract, Arabic fixture strings intact, zero-message candidate absent from Messages sheet. Re-running the same command does NOT overwrite — a `-HHMMSS` file appears.

@@ -7,3 +7,9 @@ Icon?
 
 # Local-only Claude state
 .claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
