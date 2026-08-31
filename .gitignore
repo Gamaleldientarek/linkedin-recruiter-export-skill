@@ -1,0 +1,9 @@
+# Candidate PII exports — never commit
+exports/
+
+# OS / editor noise
+.DS_Store
+Icon?
+
+# Local-only Claude state
+.claude/settings.local.json
