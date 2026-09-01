@@ -4,8 +4,9 @@
 
 - **Name**: `linkedin-recruiter-export`
 - **Location**: `.claude/skills/linkedin-recruiter-export/SKILL.md`
-- **Triggers**: user invokes `/linkedin-recruiter-export`, or asks to "export a Recruiter project", "export LinkedIn Recruiter Lite data", "pull my recruiter pipeline", etc. (description frontmatter must cover these phrasings).
+- **Triggers**: user invokes `/linkedin-recruiter-export`, or asks to "export a Recruiter project", "export LinkedIn Recruiter Lite data", "pull my recruiter pipeline", "export my InMails / inbox / message threads", etc. (description frontmatter must cover these phrasings).
 - **Optional argument**: a project name — skips the project-selection prompt when it uniquely matches.
+- **Sources** (one per run): a project pipeline (**project mode**), or the InMail inbox's four folders (**inbox mode**, slug `inbox`) — used when the seat has no projects or the user asks for their InMails. *(Added 2026-09-01: the live seat had zero projects; inbox mode is the operative path until projects exist.)*
 
 ## Runtime preconditions (skill must verify, in order)
 
@@ -17,7 +18,8 @@
 
 | Point | When | Form |
 |---|---|---|
-| Project selection | Start of run (skipped if argument matched) | List project names, user picks one |
+| Project selection | Start of run (skipped if argument matched, or in inbox mode) | List project names, user picks one |
+| Inbox-mode offer | Projects list reads `Projects (0)` | Explain no projects exist; proceed with inbox export only on user's yes |
 | Fresh vs incremental | Only when chosen project's raw state says `complete` (FR-015) | Two-option question |
 | Checkpoint handoff | Any security/verification page (FR-010) | Stop + explain; user resolves manually; user explicitly says resume |
 | Final summary | End of run (FR-013) | Project name, counts (candidates / messages / notes), output path, skipped candidates + reasons |
@@ -34,3 +36,5 @@
 - No hardcoded obfuscated CSS selectors (FR-011); missing expected structure → loud stop naming what was not found (FR-012)
 - Randomized 2–5 s inter-navigation delays; 8–12 s rest every ~10 candidates (FR-009)
 - All data stays local (FR-014)
+- Every exported candidate row carries the candidate's LinkedIn profile link (also the dedupe key); a candidate whose profile link cannot be found stops the run loudly rather than exporting without it
+- Read-only: no Edit/Delete/note/reminder/reply/call/archive control is ever clicked

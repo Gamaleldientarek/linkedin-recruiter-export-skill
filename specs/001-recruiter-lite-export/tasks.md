@@ -1,5 +1,14 @@
 # Tasks: LinkedIn Recruiter Lite Export
 
+> **Status 2026-09-01 — scope pivot**: the live seat (AZM X People and Culture)
+> has **zero projects**, so all project-mode live tasks (T007, T010, T013,
+> T015, T016, T018) are blocked until a project with candidates exists. Per
+> Jimmy, the skill gained an **inbox mode** (export the InMail inbox's four
+> folders) which was recon'd and validated end-to-end on real data the same
+> day — see the validation log in quickstart.md. Message-thread waypoints
+> (T011's substance) were recorded from the inbox thread view. A hard rule was
+> added: every candidate row must carry the LinkedIn profile link.
+
 **Input**: Design documents from `/specs/001-recruiter-lite-export/`
 
 **Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/, quickstart.md (all present)
@@ -55,7 +64,7 @@
 
 **Independent Test**: quickstart Scenario 2 message spot-check — 3 threads match message-for-message with correct directions (SC-002)
 
-- [ ] T011 [US2] **(live)** Recon a candidate conversation view from within the project (thread container, per-message sender/date/text, scheduled-message appearance, no-thread state) and record semantic waypoints in `references/extraction-guide.md` section "Message thread"
+- [X] T011 [US2] **(live)** Recon a candidate conversation view from within the project (thread container, per-message sender/date/text, scheduled-message appearance, no-thread state) and record semantic waypoints in `references/extraction-guide.md` section "Message thread"
 - [X] T012 [US2] Write the per-candidate message procedure into `SKILL.md` + `references/extraction-guide.md`: open thread from candidate, extract each message (seq, date, direction from sender identity, subject, full text; `scheduled` label per FR-004), append `messages.jsonl`, mark `messages: done|none` in `state.json`, zero rows for no-thread candidates (US2 acceptance 2), pacing between candidates per safety-rules
 - [ ] T013 [US2] **(live)** Validate US2 on the test project: full run, spot-check 3 known threads incl. one archived conversation (inbox-state independence) against the workbook Messages sheet (SC-002)
 
@@ -94,9 +103,9 @@
 
 - [ ] T019 [P] Verify end-of-run summary output (FR-013) and empty-project behavior (quickstart Scenario 6) — adjust SKILL.md wording if the summary misses counts or skip reasons
 - [X] T020 [P] Write repo `README.md`: what the skill does, prerequisites, invocation, safety posture, workbook format pointer to contracts — no candidate data examples. Include an **Installation** section: (a) Claude Code — clone repo and copy `.claude/skills/linkedin-recruiter-export/` into `~/.claude/skills/` (global) or a project's `.claude/skills/` (per-project), enable Claude-in-Chrome, restart session; (b) ChatGPT — honest note that Claude skills don't run on ChatGPT natively, with a short "adapt manually" pointer (SKILL.md + references are plain-Markdown procedure text usable as instructions for any agent that controls the user's browser)
-- [ ] T021 Self-review the finished skill against `references/safety-rules.md` and contracts/skill-interface.md hard guarantees (SC-005 rule inspection from quickstart Scenario 5); fix any drift
+- [X] T021 Self-review the finished skill against `references/safety-rules.md` and contracts/skill-interface.md hard guarantees (SC-005 rule inspection from quickstart Scenario 5); fix any drift
 - [ ] T022 Run full quickstart validation pass (Scenarios 1–4, 6) and record results in `specs/001-recruiter-lite-export/quickstart.md` as a dated validation log appendix
-- [ ] T023 Commit and push all work to `origin/main` (github.com/Gamaleldientarek/linkedin-recruiter-export-skill), confirming `exports/` stays ignored
+- [X] T023 Commit and push all work to `origin/main` (github.com/Gamaleldientarek/linkedin-recruiter-export-skill), confirming `exports/` stays ignored
 
 ---
 

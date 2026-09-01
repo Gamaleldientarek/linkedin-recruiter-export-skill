@@ -32,7 +32,8 @@ Before starting and after any unexpected redirect: if the page shows a login for
 
 ## 4. Scope and data handling
 
-- Touch only: the Recruiter projects list, the ONE chosen project's pipeline, its candidates' profile/message/note views. Nothing else — no other people's profiles, no search, no browsing.
+- Touch only what the run's mode needs: **project mode** — the Recruiter projects list, the ONE chosen project's pipeline, its candidates' profile/message/note views; **inbox mode** — the four inbox folders (`/talent/inbox/0/…`) and the threads inside them. Nothing else — no other people's profiles, no search, no browsing.
+- Read-only, always: never click Edit, Delete, Add note, Add reminder, reply, call, or archive controls. The account must be left exactly as found.
 - Never handle credentials. Never send data anywhere except local files under `exports/`.
 - Only read what is visible to the logged-in account. Missing/hidden fields stay `null` — never guessed.
 
