@@ -63,3 +63,30 @@ Cannot be forced deliberately — validated by rule inspection plus behavior if 
 Run against an empty project (create one if needed).
 
 **Expected**: no error; workbook with headers only; summary says 0 candidates.
+
+---
+
+## Validation log
+
+### 2026-09-01 — Live recon + inbox-mode validation (Fable 5 session)
+
+- Seat: AZM X People and Culture (Recruiter Lite). **Projects (0)** — project
+  mode not yet testable; recorded projects-list URL + empty-state waypoints.
+- Scope addition per Jimmy: with no projects, the export source is the InMail
+  **inbox**. SKILL.md gained an inbox mode (walk `main` / `awaitingreply` /
+  `scheduled` / `archived`); extraction-guide gained full inbox waypoints from
+  live recon (thread rows, thread header incl. `/talent/profile/<id>` href,
+  message blocks, empty-folder and can't-reply-yet states).
+- Hard rule added: every candidate row must carry the profile link (also the
+  dedupe key); plus an explicit read-only rule (never touch Edit/Delete/notes/
+  call controls).
+- End-to-end inbox validation on real data (1 thread in Awaiting Reply):
+  folders walked → `exports/raw/inbox/` JSONL + state written →
+  `build_workbook.py` → `exports/inbox-2026-09-01.xlsx`. Verified: candidate
+  row with working profile-URL hyperlink, message with correct direction
+  (`sent`), subject, and Arabic text round-tripped intact; Notes sheet
+  headers-only as expected. Scenario 1 (fixtures) had already passed via
+  pytest.
+- Still pending live validation: project mode (needs a real project), notes
+  extraction (needs an existing note), interrupt/resume at scale (needs a
+  longer run).
